@@ -1,0 +1,11 @@
+sudo xbps-remove -R xf86-video-nouveau
+echo "blacklist nouveau" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
+lspci | grep -i vga
+sudo xbps-install -S nvidia
+sudo nano /etc/default/grub    Найди строку GRUB_CMDLINE_LINUX_DEFAULT и добавь:  nvidia-drm.modeset=1
+Сохрани и обнови grub:  sudo grub-mkconfig -o /boot/grub/grub.cfg
+echo 'add_drivers+=" nvidia nvidia_modeset nvidia_uvm nvidia_drm "' | sudo tee /etc/dracut.conf.d/nvidia.conf
+sudo dracut -f
+sudo nvidia-xconfig
+
+

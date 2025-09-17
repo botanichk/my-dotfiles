@@ -1,0 +1,24 @@
+sudo xbps-install -S ghostty tilix git curl wget xsh opebox
+sudo xbps-install -S 
+sudo xbps-install -S git
+clear
+sudo xbps-install -S ghostty tilix
+sudo xbps-install -S nano curl wget openbox
+sudo xbps-install -S flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo reboot
+sudo xbps-install -S gedit
+sudo xbps-install - gedit
+sudo xbps-install -S gedit
+sudo xbps-install -S zsh
+sudo chsh -s /bin/zsh 
+sudo chsh -s /bin/zsh 
+clear
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+sudo nano ~/.zshrc
+ZSH_THEME="powerlevel10k/powerlevel10k"
+plugins=( git zsh-syntax-highlighting zsh-autosuggestions )
+p10k configure
