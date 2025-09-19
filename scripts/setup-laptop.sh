@@ -44,16 +44,24 @@ cd ~/projects
 
 # robot-Atom
 if [ ! -d "robot-Atom" ]; then
-    git clone git@github.com:botanichk/robot-Atom.git
-    echo "✅ robot-Atom клонирован"
+    echo "📦 Клонирую robot-Atom..."
+    git clone https://github.com/botanichk/robot-Atom.git
+    cd robot-Atom
+    git remote set-url origin git@github.com:botanichk/robot-Atom.git
+    echo "✅ robot-Atom клонирован и переключён на SSH"
+    cd ..
 else
     echo "⚠️ robot-Atom уже существует — пропускаю"
 fi
 
 # my-dotfiles
 if [ ! -d "my-dotfiles" ]; then
-    git clone git@github.com:botanichk/my-dotfiles.git
-    echo "✅ my-dotfiles клонирован"
+    echo "📦 Клонирую my-dotfiles..."
+    git clone https://github.com/botanichk/my-dotfiles.git
+    cd my-dotfiles
+    git remote set-url origin git@github.com:botanichk/my-dotfiles.git
+    echo "✅ my-dotfiles клонирован и переключён на SSH"
+    cd ..
 else
     echo "⚠️ my-dotfiles уже существует — пропускаю"
 fi
@@ -79,11 +87,11 @@ echo "🎉 ВСЁ ГОТОВО, БРАТИК!"
 echo "📌 Что сделано:"
 echo "   - Git настроен"
 echo "   - SSH-ключ создан и добавлен"
-echo "   - Репозитории клонированы в ~/projects/"
+echo "   - Репозитории клонированы и ПЕРЕКЛЮЧЕНЫ НА SSH"
 echo "   - Папки созданы"
 echo "   - PATH обновлён"
 echo ""
 echo "💡 Перезапусти терминал или выполни:"
 echo "   source ~/.zshrc"
 echo ""
-echo "🚀 Теперь ты готов к работе на ЛЮБОЙ системе!"
+echo "🚀 Теперь ты готов к работе на ЛЮБОЙ системе — без HTTPS-ловушек!"
