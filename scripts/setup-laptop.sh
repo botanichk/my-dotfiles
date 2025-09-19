@@ -36,44 +36,56 @@ read -p "✅ Добавил ключ в GitHub? Нажми Enter, чтобы п�
 echo "🔌 Проверяю подключение к GitHub..."
 ssh -T git@github.com 2>&1 | grep "successfully authenticated" && echo "✅ Успешно!" || echo "❌ Ошибка — проверь ключ в GitHub"
 
-# 5. Клонирование репозиториев
-echo "📥 Клонирую репозитории..."
+# 5. Клонирование или обновление репозиториев
+echo "📥 Клонирую или обновляю репозитории..."
 
 mkdir -p ~/projects
 cd ~/projects
 
 # robot-Atom
-if [ ! -d "robot-Atom" ]; then
+if [ -d "robot-Atom" ]; then
+    echo "🔄 Обновляю robot-Atom..."
+    cd robot-Atom
+    git pull origin main
+    cd ..
+else
     echo "📦 Клонирую robot-Atom..."
     git clone https://github.com/botanichk/robot-Atom.git
     cd robot-Atom
     git remote set-url origin git@github.com:botanichk/robot-Atom.git
-    echo "✅ robot-Atom клонирован и переключён на SSH"
     cd ..
-else
-    echo "⚠️ robot-Atom уже существует — пропускаю"
 fi
+echo "✅ robot-Atom готов"
 
 # my-dotfiles
-if [ ! -d "my-dotfiles" ]; then
+if [ -d "my-dotfiles" ]; then
+    echo "🔄 Обновляю my-dotfiles..."
+    cd my-dotfiles
+    git pull origin main
+    cd ..
+else
     echo "📦 Клонирую my-dotfiles..."
     git clone https://github.com/botanichk/my-dotfiles.git
     cd my-dotfiles
     git remote set-url origin git@github.com:botanichk/my-dotfiles.git
-    echo "✅ my-dotfiles клонирован и переключён на SSH"
     cd ..
-else
-    echo "⚠️ my-dotfiles уже существует — пропускаю"
 fi
+echo "✅ my-dotfiles готов"
 
 # 6. Создание важных папок
 echo "📁 Создаю важные папки..."
 mkdir -p ~/appimages
 mkdir -p ~/Документы/void
 mkdir -p ~/.local/bin
-echo "✅ Папки созданы: ~/appimages, ~/Документы/void, ~/.local/bin"
+mkdir -p ~/Изображения/обои
+mkdir -p ~/projects/my-dotfiles/wallpapers 2>/dev/null
+echo "✅ Папки созданы: ~/appimages, ~/Документы/void, ~/.local/bin, ~/Изображения/обои, ~/projects/my-dotfiles/wallpapers"
 
-# 7. Добавление ~/.local/bin в PATH (для zsh)
+# 7. Установка обоев
+echo "🖼️ Устанавливаю любимые обои..."
+cp -r ~/projects/my-dotfiles/wallpapers/* ~/Изображения/обои/ 2>/dev/null && echo "✅ Обои скопированы в ~/Изображения/обои" || echo "⚠️ Обои не найдены"
+
+# 8. Добавление ~/.local/bin в PATH (для zsh)
 if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.zshrc 2>/dev/null; then
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
     echo "✅ Добавил ~/.local/bin в ~/.zshrc"
@@ -81,17 +93,18 @@ else
     echo "📌 ~/.local/bin уже в ~/.zshrc"
 fi
 
-# 8. Готово!
+# 9. Готово!
 echo ""
 echo "🎉 ВСЁ ГОТОВО, БРАТИК!"
 echo "📌 Что сделано:"
 echo "   - Git настроен"
 echo "   - SSH-ключ создан и добавлен"
-echo "   - Репозитории клонированы и ПЕРЕКЛЮЧЕНЫ НА SSH"
-echo "   - Папки созданы"
+echo "   - Репозитории клонированы/обновлены и переключены на SSH"
+echo "   - Папки созданы (включая wallpapers и обои)"
+echo "   - Обои установлены"
 echo "   - PATH обновлён"
 echo ""
 echo "💡 Перезапусти терминал или выполни:"
 echo "   source ~/.zshrc"
 echo ""
-echo "🚀 Теперь ты готов к работе на ЛЮБОЙ системе — без HTTPS-ловушек!"
+echo "🚀 Теперь ты готов к работе на ЛЮБОЙ системе — с актуальными настройками и обоями!"
