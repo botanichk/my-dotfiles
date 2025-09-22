@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Void Community AppImage Helper — Русская версия (ИСПРАВЛЕНО: только AppImageHub)
-# Автор: Pinguin-TV (перевод и фиксы: твой братик 🐧)
-# Проект: Void-Gemeni
+# Void Community AppImage Helper — Полная русская версия
+# Автор: Pinguin-TV (исправления и перевод: твой братик 🐧)
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -13,7 +12,7 @@ import requests
 import threading
 import subprocess
 import shutil
-from urllib.parse import quote, urljoin
+from urllib.parse import quote
 from pathlib import Path
 
 # --- Константы ---
@@ -23,7 +22,6 @@ APP_DIR = "/usr/local/bin/appimages"
 ICON_BASE_DIR = os.path.expanduser("~/.local/share/icons/hicolor/128x128/apps")
 DEFAULT_APPIMAGE_DIR = os.path.expanduser("~/AppImages")
 
-# Вспомогательная функция: создать папку, если не существует
 def ensure_dir(path):
     try:
         Path(path).mkdir(parents=True, exist_ok=True)
@@ -31,7 +29,6 @@ def ensure_dir(path):
     except Exception:
         return False
 
-# --- Класс основного приложения ---
 class AppImageManager(Gtk.Window):
     def __init__(self):
         super().__init__(title="Void Community AppImage Helper")
@@ -40,13 +37,10 @@ class AppImageManager(Gtk.Window):
         self.set_border_width(10)
         self.set_position(Gtk.WindowPosition.CENTER)
 
-        # Настройки по умолчанию
         defaults = {
             'appimage_dir': DEFAULT_APPIMAGE_DIR,
             'opacity': 0.95
         }
-
-        # Загрузка настроек
         try:
             with open(CONFIG_FILE, 'r') as f:
                 self.settings = json.load(f)
@@ -54,60 +48,44 @@ class AppImageManager(Gtk.Window):
         except (FileNotFoundError, json.JSONDecodeError):
             self.settings = defaults
 
-        # Прозрачность
         self.apply_transparency()
-
-        # Инициализация директорий
         self.initialize_app_directory()
-
-        # Состояние загрузки
         self.download_active = False
         self.current_download_path = None
-
-        # UI
         self.setup_ui()
         self.connect("destroy", Gtk.main_quit)
 
     def setup_ui(self):
-        # Главный контейнер
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         self.add(vbox)
 
-        # Менюбар
         menubar = Gtk.MenuBar()
         vbox.pack_start(menubar, False, False, 0)
 
-        # Меню "Файл"
         file_menu = Gtk.Menu()
         file_item = Gtk.MenuItem(label="Файл")
         file_item.set_submenu(file_menu)
-
         quit_item = Gtk.MenuItem(label="Выход")
         quit_item.connect("activate", Gtk.main_quit)
         file_menu.append(quit_item)
         menubar.append(file_item)
 
-        # Меню "Инструменты"
         tools_menu = Gtk.Menu()
         tools_item = Gtk.MenuItem(label="Инструменты")
         tools_item.set_submenu(tools_menu)
-
         settings_item = Gtk.MenuItem(label="Настройки")
         settings_item.connect("activate", self.open_settings)
         tools_menu.append(settings_item)
         menubar.append(tools_item)
 
-        # Меню "Информация"
         info_menu = Gtk.Menu()
         info_item = Gtk.MenuItem(label="Информация")
         info_item.set_submenu(info_menu)
-
         about_item = Gtk.MenuItem(label="О программе")
         about_item.connect("activate", self.show_about)
         info_menu.append(about_item)
         menubar.append(info_item)
 
-        # Поле поиска
         hbox_search = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         self.entry_search = Gtk.Entry()
         self.entry_search.set_placeholder_text("Введите название приложения...")
@@ -117,27 +95,22 @@ class AppImageManager(Gtk.Window):
         hbox_search.pack_start(self.button_search, False, False, 0)
         vbox.pack_start(hbox_search, False, False, 0)
 
-        # Список результатов
         self.listbox_results = Gtk.ListBox()
         self.listbox_results.set_selection_mode(Gtk.SelectionMode.NONE)
         scrolled_results = Gtk.ScrolledWindow()
-        scrolled_results.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scrolled_results.add(self.listbox_results)
         scrolled_results.set_size_request(-1, 300)
         vbox.pack_start(scrolled_results, True, True, 0)
 
-        # Статус-бар
         self.statusbar = Gtk.Label(label="Готов к поиску...")
         self.statusbar.set_halign(Gtk.Align.START)
         vbox.pack_start(self.statusbar, False, False, 5)
 
-        # Кнопка управления загрузкой
         self.button_download = Gtk.Button(label="Скачать")
         self.button_download.set_sensitive(False)
         self.button_download.connect("clicked", self.on_download_clicked)
         vbox.pack_start(self.button_download, False, False, 0)
 
-        # Прогресс-бар
         self.progress_bar = Gtk.ProgressBar()
         self.progress_bar.set_fraction(0.0)
         self.progress_bar.set_text("0%")
@@ -164,7 +137,6 @@ class AppImageManager(Gtk.Window):
     def search_appimages(self, query):
         results = []
         try:
-            # Поиск ТОЛЬКО на AppImageHub — GitHub отключен, так как не возвращает прямые ссылки
             hub_url = f"https://appimage.github.io/api/applications/?search={quote(query)}"
             response = requests.get(hub_url, timeout=10)
             if response.status_code == 200:
@@ -174,7 +146,6 @@ class AppImageManager(Gtk.Window):
                     description = item.get('description', 'Нет описания')
                     download_url = item.get('download_url', '')
                     icon_url = item.get('icon_url', '')
-                    # Фильтр: только если ссылка заканчивается на .AppImage
                     if download_url and download_url.endswith('.AppImage'):
                         results.append({
                             'name': name,
@@ -183,15 +154,44 @@ class AppImageManager(Gtk.Window):
                             'icon_url': icon_url,
                             'source': 'AppImageHub'
                         })
-                    else:
-                        # Пропускаем, если это не прямая ссылка на AppImage
-                        continue
 
+            gh_url = f"https://api.github.com/search/repositories?q={quote(query)}+AppImage+in:name,description"
+            response = requests.get(gh_url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                for item in data.get('items', [])[:5]:
+                    name = item.get('name', 'Без названия')
+                    description = item.get('description', 'Нет описания') or 'Нет описания'
+                    repo_url = item.get('html_url', '')
+                    direct_url = self.get_github_appimage_link(repo_url)
+                    if direct_url:
+                        results.append({
+                            'name': name,
+                            'description': description,
+                            'url': direct_url,
+                            'icon_url': '',
+                            'source': 'GitHub'
+                        })
         except Exception as e:
             GLib.idle_add(self.update_status, f"Ошибка поиска: {e}")
             return
 
         GLib.idle_add(self.display_results, results)
+
+    def get_github_appimage_link(self, repo_url):
+        try:
+            api_url = repo_url.replace('https://github.com', 'https://api.github.com/repos') + '/releases/latest'
+            response = requests.get(api_url, timeout=10)
+            if response.status_code == 200:
+                release = response.json()
+                assets = release.get('assets', [])
+                for asset in assets:
+                    download_url = asset.get('browser_download_url', '')
+                    if download_url.endswith('.AppImage'):
+                        return download_url
+        except:
+            pass
+        return None
 
     def display_results(self, results):
         if not results:
@@ -201,12 +201,8 @@ class AppImageManager(Gtk.Window):
         for item in results:
             row = Gtk.ListBoxRow()
             hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-
-            # Иконка (заглушка)
             icon = Gtk.Image.new_from_icon_name("application-x-executable", Gtk.IconSize.DIALOG)
             hbox.pack_start(icon, False, False, 0)
-
-            # Информация
             vbox_info = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
             label_name = Gtk.Label(label=f"<b>{item['name']}</b> ({item['source']})", use_markup=True)
             label_name.set_halign(Gtk.Align.START)
@@ -216,12 +212,9 @@ class AppImageManager(Gtk.Window):
             vbox_info.pack_start(label_name, False, False, 0)
             vbox_info.pack_start(label_desc, False, False, 0)
             hbox.pack_start(vbox_info, True, True, 0)
-
-            # Кнопка выбора
             button_select = Gtk.Button(label="Выбрать")
             button_select.connect("clicked", self.on_select_result, item)
             hbox.pack_start(button_select, False, False, 0)
-
             row.add(hbox)
             self.listbox_results.add(row)
 
@@ -244,14 +237,12 @@ class AppImageManager(Gtk.Window):
             self.update_status("Нет ссылки для скачивания!")
             return
 
-        # Определяем имя файла
         filename = url.split('/')[-1]
         if not filename.endswith('.AppImage'):
             filename = f"{item['name'].replace(' ', '_')}.AppImage"
 
         self.current_download_path = os.path.join(self.settings['appimage_dir'], filename)
 
-        # Запуск загрузки в отдельном потоке
         self.download_active = True
         self.button_download.set_sensitive(False)
         self.progress_bar.set_fraction(0.0)
@@ -283,10 +274,7 @@ class AppImageManager(Gtk.Window):
                             GLib.idle_add(self.progress_bar.set_fraction, fraction)
                             GLib.idle_add(self.progress_bar.set_text, f"{int(fraction * 100)}%")
 
-            # Делаем исполняемым
             os.chmod(filepath, 0o755)
-
-            # Создаём .desktop файл
             self.create_desktop_entry(filepath, self.selected_item['name'], self.selected_item.get('icon_url', ''))
 
             GLib.idle_add(self.update_status, "Загрузка завершена! Приложение установлено.")
@@ -303,7 +291,6 @@ class AppImageManager(Gtk.Window):
         desktop_filename = f"{name.replace(' ', '_').lower()}.desktop"
         desktop_path = os.path.expanduser(f"~/.local/share/applications/{desktop_filename}")
 
-        # Скачиваем иконку, если есть URL
         icon_path = "application-x-executable"
         if icon_url:
             icon_filename = f"{name.replace(' ', '_').lower()}.png"
@@ -314,13 +301,11 @@ class AppImageManager(Gtk.Window):
                     ensure_dir(ICON_BASE_DIR)
                     with open(icon_path, 'wb') as f:
                         f.write(response.content)
-                    # Обновляем кэш иконок
                     subprocess.run(['gtk-update-icon-cache', '-f', os.path.expanduser('~/.local/share/icons/hicolor')], capture_output=True)
                     icon_path = icon_filename
             except:
                 icon_path = "application-x-executable"
 
-        # Создаём .desktop файл
         desktop_content = f"""[Desktop Entry]
 Name={name}
 Exec={appimage_path}
@@ -335,7 +320,6 @@ Terminal=false
             ensure_dir(os.path.dirname(desktop_path))
             with open(desktop_path, 'w') as f:
                 f.write(desktop_content)
-            # Обновляем кэш меню
             subprocess.run(['update-desktop-database', os.path.expanduser('~/.local/share/applications')], capture_output=True)
         except Exception as e:
             self.update_status(f"Не удалось создать .desktop файл: {e}")
@@ -344,13 +328,11 @@ Terminal=false
         dialog = Gtk.Dialog(title="Настройки", transient_for=self, flags=0)
         dialog.add_buttons("OK", Gtk.ResponseType.OK, "Отмена", Gtk.ResponseType.CANCEL)
         dialog.set_default_size(400, 200)
-
         box = dialog.get_content_area()
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         vbox.set_border_width(10)
         box.add(vbox)
 
-        # Папка для AppImage
         hbox_dir = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         label_dir = Gtk.Label(label="Папка для AppImage:")
         self.entry_dir = Gtk.Entry()
@@ -362,7 +344,6 @@ Terminal=false
         hbox_dir.pack_start(button_browse, False, False, 0)
         vbox.pack_start(hbox_dir, False, False, 0)
 
-        # Прозрачность
         hbox_opacity = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         label_opacity = Gtk.Label(label="Прозрачность (0.0–1.0):")
         self.spin_opacity = Gtk.SpinButton()
@@ -399,7 +380,6 @@ Terminal=false
             action=Gtk.FileChooserAction.SELECT_FOLDER
         )
         dialog.add_buttons("Отмена", Gtk.ResponseType.CANCEL, "OK", Gtk.ResponseType.OK)
-
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             entry.set_text(dialog.get_filename())
@@ -418,18 +398,6 @@ Terminal=false
         dialog.set_copyright("© 2025 Pinguin-TV\nЧасть проекта Void-Gemeni")
         dialog.run()
         dialog.destroy()
-
-    def load_settings(self):
-        defaults = {
-            'appimage_dir': DEFAULT_APPIMAGE_DIR,
-            'opacity': 0.95
-        }
-        try:
-            with open(CONFIG_FILE, 'r') as f:
-                self.settings = json.load(f)
-            self.settings = {**defaults, **self.settings}
-        except (FileNotFoundError, json.JSONDecodeError):
-            self.settings = defaults
 
     def save_settings(self):
         try:
@@ -453,19 +421,6 @@ Terminal=false
         ensure_dir(self.settings['appimage_dir'])
         ensure_dir(APP_DIR)
         ensure_dir(ICON_BASE_DIR)
-
-    def info_dialog(self, title, text):
-        dialog = Gtk.MessageDialog(transient_for=self.window, modal=True, message_type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.OK, text=title)
-        dialog.format_secondary_text(text)
-        dialog.run()
-        dialog.destroy()
-
-    def confirm_dialog(self, title, text) -> bool:
-        dialog = Gtk.MessageDialog(transient_for=self.window, modal=True, message_type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.YES_NO, text=title)
-        dialog.format_secondary_text(text)
-        resp = dialog.run()
-        dialog.destroy()
-        return resp == Gtk.ResponseType.YES
 
 if __name__ == "__main__":
     app = AppImageManager()
