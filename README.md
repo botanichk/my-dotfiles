@@ -3,7 +3,8 @@
 📦 Клонируем репозиторий с конфигами:
 
 ```bash
-git clone https://github.com/igorvoid/configs.git
+git clone https://github.com/botanichk/my-dotfiles.git
+
 ```
 📂 Переходим в папку с конфигами:
 ```
