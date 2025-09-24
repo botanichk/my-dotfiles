@@ -18,7 +18,8 @@ nano ~/mafetch
 chmod +x ~/mafetch
 ```
 🚚 Шаг 3: Перемещаем в системный путь
-```sudo mv ~/mafetch /usr/local/bin/mafetch
+```
+sudo mv ~/mafetch /usr/local/bin/mafetch
 ```
 🧪 Шаг 4: Запускаем Marsik'а
 ```
