@@ -1,9 +1,11 @@
 ## 🚀 Установка
 
+📦 Клонируем репозиторий с конфигами:
+
 ```bash
 git clone https://github.com/igorvoid/configs.git
 ```
-
-```bash
+📂 Переходим в папку с конфигами:
+```
 cd configs
 ```
