@@ -49,8 +49,15 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 ```
-##🐧 Шаг 6: Применить настройки
+## 🐧 Шаг 6: Применить настройки
 
 ```
 source ~/.zshrc
 ```
+---
+## 🐧 Шаг 7: А можно сделать всё одной командой
+> Если не хочется настраивать вручную — просто запусти готовый скрипт:
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/botanichk/my-dotfiles/main/void/install-zsh.sh)"
+```
+> Скрипт сам установит Oh My Zsh, Powerlevel10k, плагины и настроит .zshrc
