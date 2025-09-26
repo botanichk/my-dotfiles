@@ -19,7 +19,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 ```
 git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 ```
-Открой .zshrc:
+> Открой .zshrc:
 
 ```
 nano ~/.zshrc
