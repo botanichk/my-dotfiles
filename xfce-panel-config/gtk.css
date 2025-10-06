@@ -1,0 +1,197 @@
+/* __ __
+  / // /____ ____  ____   ___  ____  ____  ____  _
+  \ . \/ __// ___// -__/ / _ //__  // _  // -__// /_
+ /_//_/ __//____//____/ / __//__-_//_//_//____//___/
+     /_/        by diws/_/                aestethic */
+
+/* ───── XFCE Panel ───── */
+.xfce4-panel {
+  font-family: 'Terminus (TTF)';
+  font-size: 12px;
+  opacity: 1;
+}
+
+/* ───── Whisker Menu ───── */
+#plugin-7 {
+  background: #cc241d;
+  border-radius: 4px;
+}
+#plugin-7:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Workspaces ───── */
+#plugin-9 #xfce-panel-toggle-button {
+  background: #98971a;
+  color: #f9f9f9;
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 4px 8px;
+}
+#plugin-9 #xfce-panel-toggle-button:checked {
+  background: #676767;
+  color: #fafafa;
+  border-color: #676767;
+  border-radius: 4px;
+}
+#plugin-9 #xfce-panel-toggle-button:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Clock ───── */
+#plugin-10 {
+  background: #83a598;
+  color: #f9f9f9;
+  border-radius: 4px;
+}
+#plugin-10:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Sound ───── */
+#plugin-11 {
+  background: #458588;
+  color: #D5D9D6;
+  border-radius: 0px;
+}
+#plugin-11:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Screenshot ───── */
+#plugin-12 {
+  background: #282828;
+  color: #f9f9f9;
+  border-radius: 4px;
+}
+#plugin-12:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Wi-Fi ───── */
+#plugin-13 {
+  background: #458588;
+  color: #D5D9D6;
+  border-radius: 4px 0 4px 0;
+}
+#plugin-13:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Launchers ───── */
+#plugin-14, #plugin-15, #plugin-16, #plugin-17 {
+  background: #282828;
+  border-radius: 4px;
+}
+#plugin-14:hover, #plugin-15:hover, #plugin-16:hover, #plugin-17:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  color: #282828;
+  border-radius: 4px;
+}
+
+/* ───── Tasklist ───── */
+.xfce4-panel .tasklist .toggle {
+  background: #c5c8c6;
+  opacity: 0.9;
+  border-color: #c5c8c6;
+  border-radius: 4px;
+  margin: 5px;
+  padding: 5px;
+}
+.xfce4-panel .tasklist .toggle:checked {
+  background: #c5c8c6;
+  opacity: 0.9;
+  border-color: #c5c8c6;
+  border-radius: 4px;
+  margin: 2px;
+  padding: 0px;
+}
+.xfce4-panel .tasklist .toggle:hover {
+  background: #c5c8c6;
+  opacity: 0.9;
+  border-color: #c5c8c6;
+  border-radius: 4px;
+  margin: 4px;
+  padding: 0px;
+}
+.tasklist .toggle image {
+  -gtk-icon-transform: scale(0.5);
+}
+.tasklist .toggle:checked image {
+  -gtk-icon-transform: scale(0.9);
+}
+.tasklist .toggle:hover image {
+  -gtk-icon-transform: scale(0.8);
+}
+.xfce4-panel button {
+  background: #ff0000;
+}
+.xfce4-panel toggle {
+  background: #00ff00;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.xfce4-panel .toggle {
+  background: #98971a;
+  color: #f9f9f9;
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 4px 8px;
+}
+.xfce4-panel .toggle:checked {
+  background: #676767;
+  color: #fafafa;
+}
+.xfce4-panel .toggle:hover {
+  background: #c5c8c6;
+  color: #282828;
+}
+#plugin-9 #xfce-panel-toggle-button {
+  background: #ff8800; /* временный оранжевый */
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+#plugin-9 #xfce-panel-toggle-button:checked {
+  background: #ff5500; /* активная — чуть темнее */
+  color: #ffffff;
+}
+#plugin-9 #xfce-panel-toggle-button:hover {
+  background: #ffaa00; /* при наведении — ярче */
+  color: #000000;
+}
+#plugin-9 #xfce-panel-toggle-button {
+  background: #ff8800;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+#plugin-9 #xfce-panel-toggle-button:checked {
+  background: #ff5500;
+  color: #ffffff;
+}
+#plugin-9 #xfce-panel-toggle-button:hover {
+  background: #ffaa00;
+  color: #000000;
+}
