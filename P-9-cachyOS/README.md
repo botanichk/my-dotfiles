@@ -1,3 +1,4 @@
+### Паосле установки  xfce4-panel -r
 ## Синий 
 ```
 .xfce4-panel .toggle {
