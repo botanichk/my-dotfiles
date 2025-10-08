@@ -40,13 +40,7 @@ EOF
 ```
 
 Настройка
-Plank: ПКМ по доку → Preferences
-
-выбрать тему
-
-размер иконок
-
-позицию панели
+Plank: ПКМ по доку → Preferences | plank --preferences
 
 Ulauncher: запусти ulauncher → Preferences
 
