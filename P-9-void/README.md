@@ -1,42 +1,45 @@
 
 ## 🎨 Пурпурный
 ```
-#plugin-9 #xfce-panel-toggle-button {
-  background: #a83279;   /* пурпурный — обычное состояние */
-  color: #f9f9f9;        /* белый текст */
+.xfce4-panel .toggle {
+  background: #a83279; /* фон: пурпурный */
+  color: #f9f9f9;      /* текст: почти белый */
   border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   padding: 4px 8px;
 }
 
-#plugin-9 #xfce-panel-toggle-button:checked {
-  background: #4b3b6e;   /* тёмно-фиолетовый — активная */
-  color: #f9f9f9;
-  border-color: #ff3366; /* малиново-красная рамка */
+.xfce4-panel .toggle:checked {
+  background: #6a1b9a; /* активный фон: тёмно‑пурпурный */
+  color: #fafafa;      /* текст: светло‑серый/белый */
 }
 
-#plugin-9 #xfce-panel-toggle-button:hover {
-  background: #ff3366;   /* ярко-малиновый — hover */
-  color: #f9f9f9;
+.xfce4-panel .toggle:hover {
+  background: #ba68c8; /* фон при наведении: светло‑пурпурный */
+  color: #282828;      /* текст: почти чёрный */
 }
 ```
 ---
 ##Синий 
 ```
-#plugin-9 #xfce-panel-toggle-button {
-  background: #1a1f3a;   /* тёмно-синий — обычное состояние */
-  color: #f2f2f2;
+.xfce4-panel .toggle {
+  background: #00bcd4; /* фон: голубой/циановый */
+  color: #f9f9f9;      /* текст: почти белый */
   border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   padding: 4px 8px;
 }
 
-#plugin-9 #xfce-panel-toggle-button:checked {
-  background: #4b3b6e;   /* фиолетовый — активная */
-  color: #f2f2f2;
-  border-color: #ff3366;
+.xfce4-panel .toggle:checked {
+  background: #008ba3; /* активный фон: тёмно-циановый */
+  color: #fafafa;      /* текст: светло‑серый/белый */
 }
 
-#plugin-9 #xfce-panel-toggle-button:hover {
-  background: #a83279;   /* пурпурный — hover */
-  color: #f2f2f2;
+.xfce4-panel .toggle:hover {
+  background: #4dd0e1; /* фон при наведении: светло‑циановый */
+  color: #282828;      /* текст: почти чёрный */
 }
 ```
+
