@@ -1,41 +1,46 @@
 ## Синий 
 ```
-#plugin-9 #xfce-panel-toggle-button {
-  background: #1a1f3a;   /* тёмно-синий — обычное состояние */
-  color: #f5f5f5;        /* белый текст */
+.xfce4-panel .toggle {
+  background: #268bd2; /* фон: голубой */
+  color: #f9f9f9;      /* текст: почти белый */
   border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   padding: 4px 8px;
 }
 
-#plugin-9 #xfce-panel-toggle-button:checked {
-  background: #673ab7;   /* фиолетовый — активная */
-  color: #f5f5f5;
-  border-color: #e91e63; /* розовая рамка */
+.xfce4-panel .toggle:checked {
+  background: #005f87; /* активный фон: тёмно‑голубой */
+  color: #fafafa;      /* текст: светло‑серый/белый */
 }
 
-#plugin-9 #xfce-panel-toggle-button:hover {
-  background: #00bcd4;   /* бирюзовый — hover */
-  color: #1a1f3a;
+.xfce4-panel .toggle:hover {
+  background: #5dade2; /* фон при наведении: светло‑голубой */
+  color: #282828;      /* текст: почти чёрный */
 }
+
+ 
 ```
 ## Оранжевый
 ```
 
-#plugin-9 #xfce-panel-toggle-button {
-  background: #ff9800;   /* оранжевый — обычное состояние */
-  color: #1a1f3a;        /* тёмно-синий текст для контраста */
+.xfce4-panel .toggle {
+  background: #ff9800; /* фон: оранжевый */
+  color: #f9f9f9;      /* текст: почти белый */
   border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
   padding: 4px 8px;
 }
 
-#plugin-9 #xfce-panel-toggle-button:checked {
-  background: #f44336;   /* красный — активная */
-  color: #f5f5f5;        /* белый текст */
-  border-color: #ffeb3b; /* жёлтая рамка */
+.xfce4-panel .toggle:checked {
+  background: #e65100; /* активный фон: тёмно‑оранжевый */
+  color: #fafafa;      /* текст: светло‑серый/белый */
 }
 
-#plugin-9 #xfce-panel-toggle-button:hover {
-  background: #ffeb3b;   /* жёлтый — hover */
-  color: #1a1f3a;        /* тёмный текст */
+.xfce4-panel .toggle:hover {
+  background: #ffb74d; /* фон при наведении: светло‑оранжевый */
+  color: #282828;      /* текст: почти чёрный */
 }
+```
 ```
