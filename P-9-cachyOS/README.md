@@ -45,3 +45,25 @@
 }
 ```
 ```
+
+## Серый
+```
+.xfce4-panel .toggle {
+  background: #6A7C6F; /* фон: серо‑зелёный (облака) */
+  color: #FFFFFF;      /* текст: белый */
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 4px 8px;
+}
+
+.xfce4-panel .toggle:checked {
+  background: #B80000; /* активный фон: глубокий красный (жар) */
+  color: #FFFFFF;      /* текст: белый */
+}
+
+.xfce4-panel .toggle:hover {
+  background: #8A9A8F; /* фон при наведении: светлее серо‑зелёный */
+  color: #FFFFFF;      /* текст: белый */
+}
+```
