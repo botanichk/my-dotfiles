@@ -82,6 +82,10 @@ ulauncher &
 Конфиг: `xfce/conky/conky-clock.conf`  
 
 ```
+mkdir -p ~/.conky
+```
+
+```
 nano ~/.conky/conky-clock.conf
 ```
 
