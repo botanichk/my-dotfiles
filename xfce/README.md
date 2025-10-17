@@ -51,3 +51,26 @@ Ulauncher: запусти ulauncher → Preferences
 расширения (plugins)
 
 Теперь при входе в XFCE автоматически стартуют и Plank, и Ulauncher.
+
+---
+
+## 🕒 Conky Clock
+
+Минималистичные часы на рабочем столе через Conky.  
+Конфиг: `xfce/conky/conky-clock.conf`  
+Автозапуск: `xfce/conky/conky.desktop`
+
+### 📦 Установка
+
+```bash
+sudo xbps-install -S conky
+⚙️ Настройка
+mkdir -p ~/.conky
+cp xfce/conky/conky-clock.conf ~/.conky/
+
+mkdir -p ~/.config/autostart
+cp xfce/conky/conky.desktop ~/.config/autostart/
+chmod +x ~/.config/autostart/conky.desktop
+🧪 Проверка
+conky -c ~/.conky/conky-clock.conf
+
