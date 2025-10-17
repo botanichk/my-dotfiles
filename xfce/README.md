@@ -51,7 +51,29 @@ Ulauncher: запусти ulauncher → Preferences
 расширения (plugins)
 
 Теперь при входе в XFCE автоматически стартуют и Plank, и Ulauncher.
+### добавить Ulauncher в Plank
 
+```
+nano ~/.local/share/applications/ulauncher.desktop
+```
+
+### добавить
+
+```
+[Desktop Entry]
+Name=Ulauncher
+Exec=ulauncher
+Icon=ulauncher
+Type=Application
+Categories=Utility;
+StartupNotify=false
+```
+
+### запустить в ручную
+
+```
+ulauncher &
+```
 ---
 
 ## 🕒 Conky Clock
