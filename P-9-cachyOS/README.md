@@ -1,3 +1,4 @@
+### nano ~/.config/gtk-3.0/gtk.css
 ### Паосле установки  xfce4-panel -r
 ## Синий 
 ```
