@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=sh -c "sleep 15 && conky -c /home/ig_ro/.conky/conky-clock.conf >> /tmp/conky.log 2>&1"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Conky Clock
+Comment=Запуск Conky после загрузки XFCE
