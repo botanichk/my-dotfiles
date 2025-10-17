@@ -16,15 +16,12 @@
 
 ---
 
-## 🐾 Mafetch — терминальный агент Марсик
+## 🐾 верхняя панель
 
-Скрипт показывает системную информацию, ASCII-арт и цитату дня.  
-Работает на Void Linux и других дистрибутивах.
-
-### 🚀 Установка
-
-```bash
-git clone https://github.com/botanichk/my-dotfiles.git
-cd my-dotfiles/skrepts
-chmod +x mafetch
-sudo mv mafetch /usr/local/bin/mafetch
+```
+mkdir -p ~/.config/gtk-3.0
+```
+---
+```
+nano ~/.config/gtk-3.0/gtk.css
+```
