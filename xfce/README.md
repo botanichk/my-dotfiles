@@ -56,6 +56,11 @@ Ulauncher: запусти ulauncher → Preferences
 ```
 nano ~/.local/share/applications/ulauncher.desktop
 ```
+### создать
+
+```
+mkdir -p ~/.local/share/applications
+```
 
 ### добавить
 
