@@ -80,7 +80,22 @@ ulauncher &
 
 Минималистичные часы на рабочем столе через Conky.  
 Конфиг: `xfce/conky/conky-clock.conf`  
+
+```
+nano ~/.conky/conky-clock.conf
+```
+
 Автозапуск: `xfce/conky/conky.desktop`
+
+```
+mkdir -p ~/.config/autostart
+```
+
+```
+nano ~/.config/autostart/conky.desktop
+```
+
+---
 
 ### 📦 Установка
 
