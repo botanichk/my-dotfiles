@@ -25,3 +25,9 @@ mkdir -p ~/.config/gtk-3.0
 ```
 nano ~/.config/gtk-3.0/gtk.css
 ```
+
+### вставь конфиг и перезапусти
+
+```
+xfce4-panel -r
+```
