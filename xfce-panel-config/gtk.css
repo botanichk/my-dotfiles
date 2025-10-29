@@ -80,14 +80,19 @@
 
 /* ───── Wi-Fi ───── */
 #plugin-13 {
-  background: #458588; /* фон: сине‑зелёный */
-  color: #D5D9D6;      /* текст: светло‑серый */
-  border-radius: 4px 0 4px 0; /* диагональные скругления */
+  background-color: transparent;                      /* полностью прозрачный фон */
+  color: rgba(213, 217, 214, 0.8);                    /* светло-серый текст с 80% непрозрачности */
+  border: 1px solid rgba(244, 162, 97, 0.8);          /* оранжевая рамка */
+  border-radius: 4px 0 4px 0;                         /* диагональные скругления */
+  padding: 4px 8px;
+  margin: 2px;
+  box-shadow: none;
 }
+
 #plugin-13:hover {
-  background: #c5c8c6; /* фон при наведении: светло‑серый */
-  opacity: 0.9;
-  color: #282828;      /* текст: почти чёрный */
+  background-color: rgba(244, 162, 97, 0.2);          /* лёгкий оранжевый при наведении */
+  color: rgba(40, 40, 40, 1.0);                       /* чёткий тёмный текст */
+  border: 1px solid rgba(244, 162, 97, 1.0);          /* яркая рамка */
   border-radius: 4px;
 }
 
@@ -140,8 +145,32 @@
 
 /* ───── Global buttons ───── */
 .xfce4-panel button {
-  background: #ff0000; /* фон всех кнопок: красный */
+  background-color: transparent;                     /* прозрачный фон */
+  color: rgba(40, 40, 40, 0.8);                      /* полупрозрачный текст */
+  border: 1px solid rgba(244, 162, 97, 0.8);         /* оранжевая рамка */
+  border-radius: 4px;
+  margin: 2px;
+  padding: 4px 8px;
+  box-shadow: none;
 }
+
+/* активная кнопка — как флаг команды */
+.xfce4-panel button:checked,
+.xfce4-panel button:active {
+  background-color: #f4a261;                         /* насыщенный оранжевый фон */
+  color: #282828;                                    /* терминальный чёрный текст */
+  border: 2px solid #f4a261;                         /* рамка в тон фона */
+  border-radius: 4px;
+}
+
+/* при наведении — мягкий акцент */
+.xfce4-panel button:hover {
+  background-color: rgba(244, 162, 97, 0.2);         /* лёгкий оранжевый оттенок */
+  color: rgba(40, 40, 40, 1.0);                      /* чёткий текст */
+  border: 2px solid rgba(244, 162, 97, 1.0);         /* яркая рамка */
+  border-radius: 4px;
+}
+
 .xfce4-panel toggle {
   background: #00ff00; /* фон переключателей: зелёный */
   margin-left: 10px;
@@ -162,4 +191,29 @@
 .xfce4-panel .toggle:hover {
   background: #c5c8c6; /* фон при наведении: светло‑серый */
   color: #282828;      /* текст: почти чёрный */
+}
+
+.xfce4-panel .toggle {
+  background-color: transparent;                     /* прозрачный фон */
+  color: rgba(255, 255, 255, 0.7);                   /* белый текст с 70% непрозрачности */
+  border: 1px solid rgba(244, 162, 97, 0.8);         /* оранжевая рамка */
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 4px 8px;
+  box-shadow: none;
+}
+
+.xfce4-panel .toggle:checked {
+  background-color: #f4a261;                         /* насыщенный оранжевый фон */
+  color: #282828;                                    /* терминальный чёрный текст */
+  border: 2px solid #f4a261;                         /* рамка в тон фона */
+  border-radius: 4px;
+}
+
+.xfce4-panel .toggle:hover {
+  background-color: rgba(244, 162, 97, 0.2);         /* лёгкий оранжевый при наведении */
+  color: rgba(255, 255, 255, 1.0);                   /* чёткий белый текст */
+  border: 2px solid rgba(244, 162, 97, 1.0);         /* яркая рамка */
+  border-radius: 4px;
 }
